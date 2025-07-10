@@ -1,12 +1,4 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom/client';
-
-// .tsx 확장자를 추가하여 경로를 명확하게 지정합니다.
-// import App from './App.tsx' // App 컴포넌트를 이 파일에 직접 포함하므로, 이 줄은 삭제합니다.
-// import './style.css' // Tailwind CSS를 사용하므로, 이 파일은 필요하지 않아 삭제합니다.
-
-
-// -------------------------------- App.tsx의 모든 코드를 여기에 포함합니다 --------------------------------
 
 // setPage 프롭의 타입을 정의합니다.
 interface PageNavProps {
@@ -77,7 +69,6 @@ const Page3 = () => (
 );
 
 const Page4 = () => {
-    // checklist 상태의 타입을 명확하게 정의합니다.
     const [checklist, setChecklist] = useState<{[key: string]: boolean}>({});
     const handleCheck = (item: string) => {
         setChecklist(prev => ({...prev, [item]: !prev[item]}));
@@ -167,7 +158,6 @@ const Page5 = ({ setPage }: PageNavProps) => (
 );
 
 const Page6 = () => {
-    // decision 상태의 타입을 명확하게 정의합니다.
     const [decision, setDecision] = useState<{[key: string]: boolean}>({});
     const handleCheck = (item: string) => {
         setDecision(prev => ({...prev, [item]: !prev[item]}));
@@ -203,7 +193,8 @@ const Page6 = () => {
 };
 
 
-function App() {
+// App 컴포넌트를 정의하고 default로 export합니다.
+export default function App() {
     const [page, setPage] = useState(1);
 
     const renderPage = () => {
@@ -265,11 +256,3 @@ function App() {
         </div>
     );
 }
-
-// -----------------------------------------------------------------------------------------
-
-// ReactDOM을 사용하여 React 앱을 렌더링합니다.
-// document.getElementById('root')가 null이 아님을 !로 단언하여 오류를 해결합니다.
-ReactDOM.createRoot(document.getElementById('root')!).render(
-    <App />
-);
