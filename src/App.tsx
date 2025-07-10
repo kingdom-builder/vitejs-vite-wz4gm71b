@@ -8,8 +8,13 @@ import ReactDOM from 'react-dom/client';
 
 // -------------------------------- App.tsx의 모든 코드를 여기에 포함합니다 --------------------------------
 
+// setPage 프롭의 타입을 정의합니다.
+interface PageNavProps {
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+}
+
 // 각 페이지 컴포넌트들
-const Page1 = ({ setPage }) => (
+const Page1 = ({ setPage }: PageNavProps) => (
     <div className="tract-panel flex flex-col justify-between items-center text-center bg-gray-800 text-white" style={{backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://placehold.co/300x630/334155/e2e8f0?text=UI')", backgroundSize: 'cover'}}>
         <div>
             <h2 className="text-4xl sm:text-5xl font-black leading-tight mt-8">Self-OS냐<br/>God-OS냐</h2>
@@ -72,8 +77,9 @@ const Page3 = () => (
 );
 
 const Page4 = () => {
-    const [checklist, setChecklist] = useState({});
-    const handleCheck = (item) => {
+    // checklist 상태의 타입을 명확하게 정의합니다.
+    const [checklist, setChecklist] = useState<{[key: string]: boolean}>({});
+    const handleCheck = (item: string) => {
         setChecklist(prev => ({...prev, [item]: !prev[item]}));
     };
     return (
@@ -98,7 +104,7 @@ const Page4 = () => {
                     <div className="mt-4">
                         <h5 className="font-bold text-xs mb-2 text-center text-red-800">※ 증상 체크리스트</h5>
                         <div className="space-y-2">
-                            {['열심히 살아도 허무하다.', '관계가 어렵고 자꾸 상처받는다.', '나도 나를 잘 모르겠다.', '하나님 없이 잘 살 수 있다고 믿는다.'].map(item => (
+                            {['열심히 살아도 허무하다.', '관계가 어렵고 자꾸 상처받는다.', '나도 나를 잘 모르겠다.', '하나님 없이 잘 살 수 있다고 믿는다.'].map((item: string) => (
                                 <label key={item} className="flex items-center text-xs">
                                     <input type="checkbox" checked={!!checklist[item]} onChange={() => handleCheck(item)} className="h-4 w-4 rounded-sm border-gray-300 text-red-600 focus:ring-red-500"/>
                                     <span className="ml-2 text-gray-700">{item}</span>
@@ -129,7 +135,7 @@ const Page4 = () => {
     );
 };
 
-const Page5 = ({ setPage }) => (
+const Page5 = ({ setPage }: PageNavProps) => (
     <div className="tract-panel bg-blue-50 border-blue-200">
         <div className="text-center mb-4">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 mb-4">
@@ -161,8 +167,9 @@ const Page5 = ({ setPage }) => (
 );
 
 const Page6 = () => {
-    const [decision, setDecision] = useState({});
-    const handleCheck = (item) => {
+    // decision 상태의 타입을 명확하게 정의합니다.
+    const [decision, setDecision] = useState<{[key: string]: boolean}>({});
+    const handleCheck = (item: string) => {
         setDecision(prev => ({...prev, [item]: !prev[item]}));
     };
     return (
@@ -177,7 +184,7 @@ const Page6 = () => {
                 <p className="text-sm text-gray-500">새로운 시작을 위한 당신의 선택</p>
             </div>
             <div className="space-y-3 mb-4">
-                {['예수님을 주인으로 믿겠습니다.', 'God-OS에 대해 더 알고 싶어요.', '교회에 함께 가고 싶습니다.'].map(item => (
+                {['예수님을 주인으로 믿겠습니다.', 'God-OS에 대해 더 알고 싶어요.', '교회에 함께 가고 싶습니다.'].map((item: string) => (
                     <label key={item} className="flex items-center p-3 bg-gray-50 rounded-lg border has-[:checked]:bg-green-100 has-[:checked]:border-green-300">
                         <input type="checkbox" checked={!!decision[item]} onChange={() => handleCheck(item)} className="h-5 w-5 rounded border-gray-300 text-green-600 focus:ring-green-500"/>
                         <span className="ml-3 text-gray-700">{item}</span>
@@ -262,7 +269,7 @@ function App() {
 // -----------------------------------------------------------------------------------------
 
 // ReactDOM을 사용하여 React 앱을 렌더링합니다.
-// React.StrictMode를 제거하여 잠재적인 렌더링 문제를 해결합니다.
-ReactDOM.createRoot(document.getElementById('root')).render(
+// document.getElementById('root')가 null이 아님을 !로 단언하여 오류를 해결합니다.
+ReactDOM.createRoot(document.getElementById('root')!).render(
     <App />
 );
