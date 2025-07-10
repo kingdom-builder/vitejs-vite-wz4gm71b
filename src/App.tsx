@@ -1,4 +1,12 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom/client';
+
+// .tsx 확장자를 추가하여 경로를 명확하게 지정합니다.
+// import App from './App.tsx' // App 컴포넌트를 이 파일에 직접 포함하므로, 이 줄은 삭제합니다.
+// import './style.css' // Tailwind CSS를 사용하므로, 이 파일은 필요하지 않아 삭제합니다.
+
+
+// -------------------------------- App.tsx의 모든 코드를 여기에 포함합니다 --------------------------------
 
 // 각 페이지 컴포넌트들
 const Page1 = ({ setPage }) => (
@@ -188,7 +196,7 @@ const Page6 = () => {
 };
 
 
-export default function App() {
+function App() {
     const [page, setPage] = useState(1);
 
     const renderPage = () => {
@@ -250,3 +258,11 @@ export default function App() {
         </div>
     );
 }
+
+// -----------------------------------------------------------------------------------------
+
+// ReactDOM을 사용하여 React 앱을 렌더링합니다.
+// React.StrictMode를 제거하여 잠재적인 렌더링 문제를 해결합니다.
+ReactDOM.createRoot(document.getElementById('root')).render(
+    <App />
+);
