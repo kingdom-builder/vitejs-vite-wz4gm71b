@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+// 최종 버전
 // 각 페이지 컴포넌트들
 const Page1 = ({ setPage }) => (
     <div className="tract-panel flex flex-col justify-between items-center text-center bg-gray-800 text-white" style={{backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://placehold.co/300x630/334155/e2e8f0?text=UI')", backgroundSize: 'cover'}}>
